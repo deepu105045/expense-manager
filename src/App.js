@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import ExpenseForm from './components/ExpenseForm';
-import ExpenseList from './components/ExpenseList';
+import ExpenseForm from './components/expense/ExpenseForm';
+import ExpenseList from './components/expense/ExpenseList'
+import Header from './components/header/header';
 import ExpenseData from './data/ExpenseData';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   }
   return (
     <div>
+      <Header/>
       <ExpenseForm onAddExpense={addExpense}/>
       <ExpenseList data ={data}/>
     </div>
