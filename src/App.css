@@ -1,0 +1,9 @@
+.row{
+    height: 450px;
+    overflow: auto;
+}
+
+.div-border{
+    border-style: double;
+    border-radius: 25px;
+}
