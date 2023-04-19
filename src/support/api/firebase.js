@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { CREATED_TIMESTAMP } from '../Constants';
+import { CREATED_TIMESTAMP,DISPLAY_NAME } from '../Constants';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 
@@ -15,7 +15,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-const loggedInUserInfo ={};
 
 export const addDocument = (collectionName, data) => {
   data[CREATED_TIMESTAMP]= firebase.firestore.FieldValue.serverTimestamp();
@@ -39,25 +38,20 @@ export const signInWithGoogle = ()=>{
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    const user = result.user;
-    this.loggedInUserInfo =user
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        localStorage.setItem(DISPLAY_NAME,user.displayName)
 
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-   
-  });
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      
+      });
 
 }
 
-export const getLoggedInUser = ()=>{
-  return loggedInUserInfo;
-}

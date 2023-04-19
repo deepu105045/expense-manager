@@ -7,6 +7,7 @@ import LineChart from './components/charts/LineChart';
 import { addDocument, getDocuments, updateDocument, deleteDocument } from './support/api/firebase'
 import { EXPENSE_COLLECTION, CREATED_TIMESTAMP, DESC } from './support/Constants';
 import LoginPage from './components/Login/LoginPage';
+import { DISPLAY_NAME } from './support/Constants';
 
 export const chartData = [
   ["Month", "Expense", "Income", "Investment"],
@@ -19,6 +20,7 @@ export const chartData = [
 function App() {
   const [data, setData] = useState([]);
   const [newExpenseFlag, setNewExpensesFlag] = useState(false);
+  const displayName = localStorage.getItem(DISPLAY_NAME);
 
   useEffect(() => {
     getDocuments(EXPENSE_COLLECTION, CREATED_TIMESTAMP, DESC).then(snap => {
@@ -47,7 +49,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header title="Expense Manager" displayName = {displayName}/>
 
       <div className="container">
         <div className="row" >
