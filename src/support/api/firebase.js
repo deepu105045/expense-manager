@@ -37,14 +37,15 @@ export const deleteDocument = (collectionName, docId) => {
 export const signInWithGoogle = ()=>{
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
-  signInWithPopup(auth, provider)
+  return signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
         localStorage.setItem(DISPLAY_NAME,user.displayName)
-
+        return user;
+      
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -54,4 +55,5 @@ export const signInWithGoogle = ()=>{
       });
 
 }
+
 

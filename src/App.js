@@ -6,7 +6,6 @@ import Header from './components/header/header';
 import LineChart from './components/charts/LineChart';
 import { addDocument, getDocuments, updateDocument, deleteDocument } from './support/api/firebase'
 import { EXPENSE_COLLECTION, CREATED_TIMESTAMP, DESC } from './support/Constants';
-import LoginPage from './components/Login/LoginPage';
 import { DISPLAY_NAME } from './support/Constants';
 
 export const chartData = [
@@ -20,7 +19,7 @@ export const chartData = [
 function App() {
   const [data, setData] = useState([]);
   const [newExpenseFlag, setNewExpensesFlag] = useState(false);
-  const displayName = localStorage.getItem(DISPLAY_NAME);
+  // const [displayName,setDisplayName]=useState(localStorage.getItem(DISPLAY_NAME));
 
   useEffect(() => {
     getDocuments(EXPENSE_COLLECTION, CREATED_TIMESTAMP, DESC).then(snap => {
@@ -46,16 +45,23 @@ function App() {
       });
   }
 
+  // const logoutHandler = ()=>{
+  //   setDisplayName("")
+  // }
+  
+  // const onLoginHandler =() =>{
+  //   setDisplayName(localStorage.getItem(DISPLAY_NAME))
+
+  // }
 
   return (
     <div>
-      <Header title="Expense Manager" displayName = {displayName}/>
+      {/* <Header title="Expense Manager" onLogOut={logoutHandler} onLogin= {onLoginHandler} displayName = {displayName}/> */}
+      <Header title="Expense Manager" />
 
       <div className="container">
         <div className="row" >
-          <div className="col-sm-4">
-            <LoginPage />
-          </div>
+    
           <div className="col-sm-4">
             <ExpenseForm onAddExpense={addExpense} />
           </div>
