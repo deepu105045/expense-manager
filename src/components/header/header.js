@@ -5,19 +5,37 @@ import GmailLogin from "../Login/GmailLogin";
 const Header = props => {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div className="container-fluid">
-                    <h1 className="navbar-brand" >{props.title}</h1>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand">{props.title}</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarColor01">
-                        <ul className="navbar-nav me-auto">
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">my money</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">my kitchen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
                         </ul>
-                        <GmailLogin />
+                        <form class="d-flex">
+                            <GmailLogin/>
+                        </form>
                     </div>
                 </div>
             </nav>
+
+
         </div>
     )
 }

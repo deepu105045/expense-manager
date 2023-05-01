@@ -2,6 +2,8 @@ import React, { useState , useEffect} from "react";
 import Button from "../../support/UI/Button";
 import CalendarInput from "../../support/UI/CalendarInput";
 import InputField from "../../support/UI/InputField";
+import { addDocument } from "../../support/api/firebase";
+import { EXPENSE_COLLECTION } from "../../support/Constants";
 
 const ExpenseForm = (props) => {
  
@@ -21,7 +23,8 @@ const ExpenseForm = (props) => {
   }
 
   const expenseDateHandler = event => {
-    setExpenseDate( event.target.value)
+    const selectedDate = event.target.value
+    setExpenseDate(selectedDate);
     validateForm()
   }
 
@@ -43,16 +46,23 @@ const ExpenseForm = (props) => {
     e.preventDefault();
     
     const id = Date.now();
-    let expense ={id,expenseDate,category,amount,notes}
-    props.onAddExpense(expense)
-    // setExpenseDate(new Date().toISOString().substring(0,10))
-    setAmount('')
-    setNotes('')
-    setCategory('')
-    setFormInvalid(true);
-
-
+    const transactionDate = new Date(expenseDate)
+    let expense ={id,transactionDate,category,amount,notes}
+    addDocument(EXPENSE_COLLECTION, expense)
+        .then(() => {
+          console.log('Document added successfully!');
+          setAmount('')
+          setNotes('')
+          setCategory('')
+          setFormInvalid(true);
+          props.onAddExpense(expense)
+        })
+        .catch((error) => {
+          console.error('Error adding document: ', error);
+        });
   };
+
+
 
   return (
     <div className="container mt-3">

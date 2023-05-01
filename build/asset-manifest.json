@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/deepu105045/expense-manager/static/css/main.ae918724.css",
+    "main.js": "/deepu105045/expense-manager/static/js/main.ec9fdd7f.js",
+    "static/js/787.71d44114.chunk.js": "/deepu105045/expense-manager/static/js/787.71d44114.chunk.js",
+    "index.html": "/deepu105045/expense-manager/index.html",
+    "main.ae918724.css.map": "/deepu105045/expense-manager/static/css/main.ae918724.css.map",
+    "main.ec9fdd7f.js.map": "/deepu105045/expense-manager/static/js/main.ec9fdd7f.js.map",
+    "787.71d44114.chunk.js.map": "/deepu105045/expense-manager/static/js/787.71d44114.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ae918724.css",
+    "static/js/main.ec9fdd7f.js"
+  ]
+}

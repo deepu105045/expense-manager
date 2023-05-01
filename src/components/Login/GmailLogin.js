@@ -9,7 +9,6 @@ const GmailLogin = (props) => {
 
     const handleGoogleSign = () => {
         const displayName = localStorage.getItem(DISPLAY_NAME);
-        console.log('Dispaly name from local storage ' + displayName)
         if(displayName !=null && displayName.length> 1){
             setUsername(displayName)
             setIsLoggedIn(true)
